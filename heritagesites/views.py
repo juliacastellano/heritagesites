@@ -1,11 +1,12 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from .models import HeritageSite
 from .models import CountryArea
+from .models import HeritageSiteJurisdiction
 
 from django import forms
 from crispy_forms.helper import FormHelper
@@ -149,7 +150,7 @@ class SiteUpdateView(generic.UpdateView):
 class SiteDeleteView(generic.DeleteView):
 	model = HeritageSite
 	success_message = "Heritage Site deleted successfully"
-	success_url = reverse_lazy('site')
+	success_url = reverse_lazy('sites')
 	context_object_name = 'site'
 	template_name = 'heritagesites/site_delete.html'
 
